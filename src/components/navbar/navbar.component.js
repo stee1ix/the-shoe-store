@@ -62,7 +62,12 @@ const PAGES = ["HOME", "MEN", "WOMEN", "KIDS", "FAVOURITES"];
 const Navbar = () => {
   const [tabValue, setTabValue] = useState(0);
   return (
-    <AppBar position={"static"} elevation={3} color={"inherit"}>
+    <AppBar
+      position={"static"}
+      elevation={3}
+      color={"inherit"}
+      sx={{ marginBottom: 2 }}
+    >
       <Toolbar>
         <Box
           sx={{

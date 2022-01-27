@@ -8,7 +8,9 @@ const RoutesOperator = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="collection" element={<CollectionPage />} />
+      <Route path="collection">
+        <Route path={":category"} element={<CollectionPage />} />
+      </Route>
     </Routes>
   );
 };

@@ -9,7 +9,7 @@ import {
   Icon,
   Typography,
 } from "@mui/material";
-import { Star, StarOutline } from "@mui/icons-material";
+import { Star } from "@mui/icons-material";
 
 const ShoecardComponent = ({
   name = "Nike Mercurial",
@@ -18,15 +18,15 @@ const ShoecardComponent = ({
   rating = 4,
 }) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
-  const unratedStarsArray = Array.from(new Array(5 - rating));
+  const unratedStarsArray = Array.from(new Array(5 - Math.floor(rating)));
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 320 }}>
       <CardActionArea>
         <CardMedia
           component={"img"}
           image={imageurl}
-          height={"300"}
+          height={"240"}
           alt={name}
         />
         <CardContent>
