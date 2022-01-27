@@ -72,11 +72,11 @@ const Navbar = () => {
             userSelect: "none",
           }}
         >
-          <ShoppingBagOutlined
-            sx={{
-              marginRight: 2,
-            }}
-          />
+          {/*<ShoppingBagOutlined*/}
+          {/*  sx={{*/}
+          {/*    marginRight: 2,*/}
+          {/*  }}*/}
+          {/*/>*/}
           <Typography
             variant={"h6"}
             noWrap
@@ -85,10 +85,9 @@ const Navbar = () => {
               marginRight: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "Work Sans",
-              // fontWeight: "medium",
             }}
           >
-            HYPER SHOES
+            THE SHOE STORE
           </Typography>
         </Box>
         <Box
