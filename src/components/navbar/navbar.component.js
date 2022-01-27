@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -17,6 +17,8 @@ import {
   ShoppingBagOutlined,
 } from "@mui/icons-material";
 import { styled, alpha } from "@mui/material/styles";
+
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -57,16 +59,34 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const PAGES = ["HOME", "MEN", "WOMEN", "KIDS", "FAVOURITES"];
-
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [tabValue, setTabValue] = useState(0);
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/collection/men":
+        setTabValue(1);
+        break;
+      case "/collection/women":
+        setTabValue(2);
+        break;
+      case "/collection/kids":
+        setTabValue(3);
+        break;
+      default:
+        setTabValue(0);
+    }
+  }, [location.pathname]);
+
   return (
     <AppBar
       position={"static"}
       elevation={3}
       color={"inherit"}
-      sx={{ marginBottom: 2 }}
+      // sx={{ marginBottom: 2 }}
     >
       <Toolbar>
         <Box
@@ -109,9 +129,10 @@ const Navbar = () => {
             textColor={"inherit"}
             indicatorColor={"primary"}
           >
-            {PAGES.map((page) => (
-              <Tab label={page} key={`page-${page}`} />
-            ))}
+            <Tab label={"HOME"} onClick={() => navigate("/")} />
+            <Tab label={"MEN"} onClick={() => navigate("collection/men")} />
+            <Tab label={"WOMEN"} onClick={() => navigate("collection/women")} />
+            <Tab label={"KIDS"} onClick={() => navigate("collection/kids")} />
           </Tabs>
         </Box>
         <Box

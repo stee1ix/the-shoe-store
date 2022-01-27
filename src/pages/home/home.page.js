@@ -6,9 +6,6 @@ const HomePage = () => {
   return (
     <div>
       <Typography variant={"h1"}>Home</Typography>
-      <Link to={"collection"}>
-        <Button>Collection</Button>
-      </Link>
     </div>
   );
 };

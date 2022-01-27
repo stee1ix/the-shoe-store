@@ -10,13 +10,16 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import ShoecardComponent from "./components/shoecard/shoecard.component";
 import {
   ArrowDownward,
   ArrowUpward,
   KeyboardArrowDown,
   StarOutline,
 } from "@mui/icons-material";
+
+import FilterbarComponent from "./components/filterbar/filterbar.component";
+
+import { useParams } from "react-router-dom";
 
 const CollectionPage = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -28,45 +31,84 @@ const CollectionPage = () => {
     setAnchorEl(null);
   };
 
+  const params = useParams();
+
+  const [selectedSortIndex, setSelectedSortIndex] = useState(0);
+
+  const handleSortListItemClick = (event, index) => {
+    setSelectedSortIndex(index);
+  };
+
   return (
-    <Box>
+    <Box sx={{ display: "flex" }}>
+      <FilterbarComponent />
+      <Divider orientation={"vertical"} flexItem />
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
-          padding: "0 24px",
+          flexDirection: "column",
+          flex: 1,
         }}
       >
-        <Typography variant={"h4"}>MENS SHOES</Typography>
-        <Button
-          onClick={handleClick}
-          color={"inherit"}
-          endIcon={<KeyboardArrowDown />}
-          sx={{ marginLeft: "auto" }}
+        <Box
+          sx={{
+            display: "flex",
+            padding: "16px 24px",
+            alignItems: "center",
+          }}
         >
-          SORT BY
-        </Button>
-        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-          <MenuItem onClick={handleClose}>
-            <ListItemIcon>
-              <StarOutline />
-            </ListItemIcon>
-            <ListItemText>Featured</ListItemText>
-          </MenuItem>
-          <Divider />
-          <MenuItem onClick={handleClose}>
-            <ListItemIcon>
-              <ArrowUpward />
-            </ListItemIcon>
-            <ListItemText>Price: High to Low</ListItemText>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            <ListItemIcon>
-              <ArrowDownward />
-            </ListItemIcon>
-            <ListItemText>Price: Low to High</ListItemText>
-          </MenuItem>
-        </Menu>
+          <Typography variant={"h2"}>
+            {params.category.toUpperCase()} SHOES
+          </Typography>
+          <Button
+            onClick={handleClick}
+            color={"inherit"}
+            endIcon={<KeyboardArrowDown />}
+            sx={{ marginLeft: "auto", height: 48, padding: "0 12px" }}
+          >
+            SORT BY
+          </Button>
+          <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+            <MenuItem
+              selected={selectedSortIndex === 0}
+              onClick={(event) => {
+                handleSortListItemClick(event, 0);
+                handleClose();
+              }}
+            >
+              <ListItemIcon>
+                <StarOutline />
+              </ListItemIcon>
+              <ListItemText>Featured</ListItemText>
+            </MenuItem>
+            <Divider />
+            <MenuItem
+              selected={selectedSortIndex === 1}
+              onClick={(event) => {
+                handleSortListItemClick(event, 1);
+                handleClose();
+              }}
+            >
+              <ListItemIcon>
+                <ArrowUpward />
+              </ListItemIcon>
+              <ListItemText>Price: High to Low</ListItemText>
+            </MenuItem>
+            <MenuItem
+              selected={selectedSortIndex === 2}
+              onClick={(event) => {
+                handleSortListItemClick(event, 2);
+                handleClose();
+              }}
+            >
+              <ListItemIcon>
+                <ArrowDownward />
+              </ListItemIcon>
+              <ListItemText>Price: Low to High</ListItemText>
+            </MenuItem>
+          </Menu>
+        </Box>
+        <Divider />
       </Box>
     </Box>
   );
