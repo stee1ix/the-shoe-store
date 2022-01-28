@@ -20,6 +20,7 @@ import {
 import FilterbarComponent from "./components/filterbar/filterbar.component";
 
 import { useParams } from "react-router-dom";
+import ShoecardComponent from "./components/shoecard/shoecard.component";
 
 const CollectionPage = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -42,29 +43,39 @@ const CollectionPage = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <FilterbarComponent />
-      <Divider orientation={"vertical"} flexItem />
+      <Divider
+        orientation={"vertical"}
+        sx={{ position: "fixed", left: 400, zIndex: 2 }}
+      />
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          flex: 1,
         }}
       >
         <Box
           sx={{
+            position: "fixed",
             display: "flex",
             padding: "16px 24px",
             alignItems: "center",
+            height: 100,
+            left: 401,
+            right: 0,
+            backgroundColor: "#ffffff",
+            zIndex: 2,
           }}
         >
-          <Typography variant={"h2"}>
+          <Typography variant={"h4"} fontWeight={"light"}>
             {params.category.toUpperCase()} SHOES
           </Typography>
+          <Button color={"inherit"} sx={{ marginLeft: "auto", marginRight: 2 }}>
+            CLEAR FILTERS
+          </Button>
           <Button
             onClick={handleClick}
             color={"inherit"}
             endIcon={<KeyboardArrowDown />}
-            sx={{ marginLeft: "auto", height: 48, padding: "0 12px" }}
           >
             SORT BY
           </Button>
@@ -108,7 +119,35 @@ const CollectionPage = () => {
             </MenuItem>
           </Menu>
         </Box>
-        <Divider />
+        <Divider
+          sx={{
+            position: "fixed",
+            top: 164,
+            left: 400,
+            right: 0,
+            zIndex: 2,
+          }}
+        />
+        <Box
+          sx={{
+            position: "relative",
+            left: 401,
+            top: 101,
+            flexBasis: "33.33%",
+            zIndex: 1,
+          }}
+        >
+          <ShoecardComponent />
+          <ShoecardComponent />
+          <ShoecardComponent />
+          <ShoecardComponent />
+          <ShoecardComponent />
+          <ShoecardComponent />
+          <ShoecardComponent />
+          <ShoecardComponent />
+          <ShoecardComponent />
+          <ShoecardComponent />
+        </Box>
       </Box>
     </Box>
   );

@@ -83,7 +83,6 @@ const Navbar = () => {
 
   return (
     <AppBar
-      position={"static"}
       elevation={3}
       color={"inherit"}
       // sx={{ marginBottom: 2 }}

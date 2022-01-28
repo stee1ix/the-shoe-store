@@ -2,87 +2,139 @@ import React, { useState } from "react";
 
 import {
   Box,
+  Button,
   Divider,
   IconButton,
   List,
   ListItemButton,
+  ListItemIcon,
+  ListItemSecondaryAction,
   ListItemText,
+  ListSubheader,
+  Slider,
   Stack,
   Typography,
 } from "@mui/material";
 import { Circle } from "@mui/icons-material";
 
 const FilterbarComponent = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
 
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
+  const handleCategoryListItemClick = (event, index) => {
+    setSelectedCategoryIndex(index);
+  };
+
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+
+  const handleColorListItemClick = (event, index) => {
+    setSelectedColorIndex(index);
+  };
+
+  const [sliderValue, setSliderValue] = React.useState([0, 100]);
+
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
   };
 
   return (
     <Box
       sx={{
+        position: "fixed",
         display: "flex",
         flexDirection: "column",
         // alignItems: "center",
-        width: 480,
+        width: 400,
         paddingTop: 2,
+        overflowY: "auto",
       }}
     >
-      <Typography variant={"h5"} sx={{ paddingLeft: 2 }} gutterBottom>
-        CATEGORIES
-      </Typography>
-      <List>
+      <List
+        subheader={<ListSubheader component={"div"}>CATEGORIES</ListSubheader>}
+      >
+        {/*<ListItemButton*/}
+        {/*  selected={selectedCategoryIndex === 0}*/}
+        {/*  onClick={(event) => handleCategoryListItemClick(event, 0)}*/}
+        {/*>*/}
+        {/*  <ListItemText>All</ListItemText>*/}
+        {/*</ListItemButton>*/}
         <ListItemButton
-          selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
-        >
-          <ListItemText>All</ListItemText>
-        </ListItemButton>
-        <ListItemButton
-          selected={selectedIndex === 1}
-          onClick={(event) => handleListItemClick(event, 1)}
+          selected={selectedCategoryIndex === 0}
+          onClick={(event) => handleCategoryListItemClick(event, 0)}
         >
           <ListItemText>Football</ListItemText>
         </ListItemButton>
         <ListItemButton
-          selected={selectedIndex === 2}
-          onClick={(event) => handleListItemClick(event, 2)}
+          selected={selectedCategoryIndex === 1}
+          onClick={(event) => handleCategoryListItemClick(event, 1)}
         >
           <ListItemText>Formal</ListItemText>
         </ListItemButton>
         <ListItemButton
-          selected={selectedIndex === 3}
-          onClick={(event) => handleListItemClick(event, 2)}
+          selected={selectedCategoryIndex === 2}
+          onClick={(event) => handleCategoryListItemClick(event, 2)}
         >
           <ListItemText>Running</ListItemText>
         </ListItemButton>
       </List>
       <Divider />
-      <Typography
-        variant={"h5"}
-        sx={{ paddingLeft: 2, paddingTop: 2 }}
-        gutterBottom
-      >
-        COLOR
-      </Typography>
-      <Stack direction={"row"} sx={{ paddingLeft: 1 }} spacing={1}>
-        <IconButton color={"error"}>
-          <Circle />
-        </IconButton>
-        <IconButton color={"default"}>
-          <Circle />
-        </IconButton>
-        <IconButton color={"secondary"}>
-          <Circle />
-        </IconButton>
-        <IconButton color={"info"}>
-          <Circle />
-        </IconButton>
-        <IconButton color={"warning"}>
-          <Circle />
-        </IconButton>
-      </Stack>
+      <List subheader={<ListSubheader component={"div"}>COLOR</ListSubheader>}>
+        <ListItemButton
+          selected={selectedColorIndex === 0}
+          onClick={(event) => handleColorListItemClick(event, 0)}
+        >
+          <ListItemIcon>
+            <Circle color={"error"} />
+          </ListItemIcon>
+          <ListItemText primary={"Red"} />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedColorIndex === 1}
+          onClick={(event) => handleColorListItemClick(event, 1)}
+        >
+          <ListItemIcon>
+            <Circle color={"action"} />
+          </ListItemIcon>
+          <ListItemText primary={"Dark"} />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedColorIndex === 2}
+          onClick={(event) => handleColorListItemClick(event, 2)}
+        >
+          <ListItemIcon>
+            <Circle color={"primary"} />
+          </ListItemIcon>
+          <ListItemText primary={"Green"} />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedColorIndex === 3}
+          onClick={(event) => handleColorListItemClick(event, 3)}
+        >
+          <ListItemIcon>
+            <Circle color={"info"} />
+          </ListItemIcon>
+          <ListItemText primary={"Blue"} />
+        </ListItemButton>
+      </List>
+      <Divider />
+
+      <ListSubheader component={"div"}>PRICE RANGE</ListSubheader>
+      <Box sx={{ margin: "36px 32px" }}>
+        <Slider
+          value={sliderValue}
+          onChange={handleSliderChange}
+          valueLabelDisplay={"auto"}
+          marks={[
+            {
+              value: 0,
+              label: "100",
+            },
+            {
+              value: 100,
+              label: "10000",
+            },
+          ]}
+        />
+      </Box>
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import Navbar from "./components/navbar/navbar.component";
 import RoutesOperator from "./routes/routes.operator";
 
@@ -19,6 +19,7 @@ function App() {
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <Navbar />
+        <Box sx={{ height: 64 }} />
         <main>
           <RoutesOperator />
         </main>
