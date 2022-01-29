@@ -133,17 +133,9 @@ const CollectionPage = () => {
             position: "relative",
             left: 401,
             top: 101,
-            flexBasis: "33.33%",
             zIndex: 1,
           }}
         >
-          <ShoecardComponent />
-          <ShoecardComponent />
-          <ShoecardComponent />
-          <ShoecardComponent />
-          <ShoecardComponent />
-          <ShoecardComponent />
-          <ShoecardComponent />
           <ShoecardComponent />
           <ShoecardComponent />
           <ShoecardComponent />

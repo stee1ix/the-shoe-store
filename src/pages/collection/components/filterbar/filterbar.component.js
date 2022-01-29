@@ -44,8 +44,10 @@ const FilterbarComponent = () => {
         flexDirection: "column",
         // alignItems: "center",
         width: 400,
-        paddingTop: 2,
+        // paddingTop: 2,
+        marginTop: 2,
         overflowY: "auto",
+        height: "calc(100vh - 64px)",
       }}
     >
       <List
@@ -76,6 +78,7 @@ const FilterbarComponent = () => {
           <ListItemText>Running</ListItemText>
         </ListItemButton>
       </List>
+
       <Divider />
       <List subheader={<ListSubheader component={"div"}>COLOR</ListSubheader>}>
         <ListItemButton
