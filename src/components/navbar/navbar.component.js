@@ -67,10 +67,10 @@ const Navbar = () => {
 
   useEffect(() => {
     switch (location.pathname) {
-      case "/collection/men":
+      case "/collection/mens":
         setTabValue(1);
         break;
-      case "/collection/women":
+      case "/collection/womens":
         setTabValue(2);
         break;
       case "/collection/kids":
@@ -129,8 +129,8 @@ const Navbar = () => {
             indicatorColor={"primary"}
           >
             <Tab label={"HOME"} onClick={() => navigate("/")} />
-            <Tab label={"MEN"} onClick={() => navigate("collection/men")} />
-            <Tab label={"WOMEN"} onClick={() => navigate("collection/women")} />
+            <Tab label={"MEN"} onClick={() => navigate("collection/mens")} />
+            <Tab label={"WOMEN"} onClick={() => navigate("collection/womens")} />
             <Tab label={"KIDS"} onClick={() => navigate("collection/kids")} />
           </Tabs>
         </Box>

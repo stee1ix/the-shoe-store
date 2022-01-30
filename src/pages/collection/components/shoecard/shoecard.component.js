@@ -21,7 +21,7 @@ const ShoecardComponent = ({
   const unratedStarsArray = Array.from(new Array(5 - Math.floor(rating)));
 
   return (
-    <Card sx={{ maxWidth: 320 }}>
+    <Card sx={{ maxWidth: "100%" }}>
       <CardActionArea>
         <CardMedia
           component={"img"}

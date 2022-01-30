@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Divider,
+  Grid,
   ListItemIcon,
   ListItemText,
   Menu,
@@ -40,6 +41,8 @@ const CollectionPage = () => {
     setSelectedSortIndex(index);
   };
 
+  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
   return (
     <Box sx={{ display: "flex" }}>
       <FilterbarComponent />
@@ -47,23 +50,29 @@ const CollectionPage = () => {
         orientation={"vertical"}
         sx={{ position: "fixed", left: 400, zIndex: 2 }}
       />
+      {/*left area*/}
       <Box
         sx={{
+          position: "fixed",
+          left: 401,
+          right: 0,
           display: "flex",
           flexDirection: "column",
+          height: "100%",
         }}
       >
+        {/*bar*/}
         <Box
           sx={{
             position: "fixed",
             display: "flex",
-            padding: "16px 24px",
+            padding: "0 24px",
             alignItems: "center",
             height: 100,
-            left: 401,
-            right: 0,
             backgroundColor: "#ffffff",
             zIndex: 2,
+            right: 0,
+            left: 401,
           }}
         >
           <Typography variant={"h4"} fontWeight={"light"}>
@@ -119,6 +128,7 @@ const CollectionPage = () => {
             </MenuItem>
           </Menu>
         </Box>
+        {/*divider*/}
         <Divider
           sx={{
             position: "fixed",
@@ -128,17 +138,34 @@ const CollectionPage = () => {
             zIndex: 2,
           }}
         />
+        {/*list area*/}
         <Box
           sx={{
             position: "relative",
-            left: 401,
-            top: 101,
+            top: 100,
+            paddingBottom: "164px",
             zIndex: 1,
+            overflowY: "auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <ShoecardComponent />
-          <ShoecardComponent />
-          <ShoecardComponent />
+          <Grid
+            container
+            spacing={6}
+            sx={{
+              padding: 6,
+            }}
+          >
+            {array.map(() => {
+              return (
+                <Grid item xs={4}>
+                  <ShoecardComponent />
+                </Grid>
+              );
+            })}
+          </Grid>
         </Box>
       </Box>
     </Box>

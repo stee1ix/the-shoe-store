@@ -48,6 +48,8 @@ const FilterbarComponent = () => {
         marginTop: 2,
         overflowY: "auto",
         height: "calc(100vh - 64px)",
+        // zIndex: 2,
+        // backgroundColor: "#ffffff",
       }}
     >
       <List
