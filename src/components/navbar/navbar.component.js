@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -19,6 +19,8 @@ import {
 import { styled, alpha } from "@mui/material/styles";
 
 import { useNavigate, useLocation } from "react-router-dom";
+
+import { FilterContext } from "../../services/filter/filter.context";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -63,18 +65,23 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const { setCollectionName } = useContext(FilterContext);
+
   const [tabValue, setTabValue] = useState(0);
 
   useEffect(() => {
     switch (location.pathname) {
       case "/collection/mens":
         setTabValue(1);
+        setCollectionName("mens");
         break;
       case "/collection/womens":
         setTabValue(2);
+        setCollectionName("womens");
         break;
       case "/collection/kids":
         setTabValue(3);
+        setCollectionName("kids");
         break;
       default:
         setTabValue(0);
@@ -130,7 +137,10 @@ const Navbar = () => {
           >
             <Tab label={"HOME"} onClick={() => navigate("/")} />
             <Tab label={"MEN"} onClick={() => navigate("collection/mens")} />
-            <Tab label={"WOMEN"} onClick={() => navigate("collection/womens")} />
+            <Tab
+              label={"WOMEN"}
+              onClick={() => navigate("collection/womens")}
+            />
             <Tab label={"KIDS"} onClick={() => navigate("collection/kids")} />
           </Tabs>
         </Box>

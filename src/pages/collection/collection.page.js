@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
   Box,
   Button,
+  CircularProgress,
   Divider,
   Grid,
   ListItemIcon,
@@ -19,9 +20,10 @@ import {
 } from "@mui/icons-material";
 
 import FilterbarComponent from "./components/filterbar/filterbar.component";
+import ShoecardComponent from "./components/shoecard/shoecard.component";
 
 import { useParams } from "react-router-dom";
-import ShoecardComponent from "./components/shoecard/shoecard.component";
+import { CollectionContext } from "../../services/collection/collection.context";
 
 const CollectionPage = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -42,6 +44,10 @@ const CollectionPage = () => {
   };
 
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+  const { collection, isLoading } = useContext(CollectionContext);
+
+  console.log(collection);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -139,11 +145,12 @@ const CollectionPage = () => {
           }}
         />
         {/*list area*/}
+
         <Box
           sx={{
             position: "relative",
             top: 100,
-            paddingBottom: "164px",
+            marginBottom: "164px",
             zIndex: 1,
             overflowY: "auto",
             display: "flex",
@@ -151,21 +158,40 @@ const CollectionPage = () => {
             alignItems: "center",
           }}
         >
-          <Grid
-            container
-            spacing={6}
-            sx={{
-              padding: 6,
-            }}
-          >
-            {array.map(() => {
-              return (
-                <Grid item xs={4}>
-                  <ShoecardComponent />
-                </Grid>
-              );
-            })}
-          </Grid>
+          {!isLoading ? (
+            <Grid
+              container
+              spacing={6}
+              sx={{
+                padding: 6,
+              }}
+            >
+              {collection.map((shoe, index) => {
+                const { name, imageurl, price, rating } = shoe;
+                return (
+                  <Grid item xs={4} key={`index${shoe.name}`}>
+                    <ShoecardComponent
+                      name={name}
+                      imageurl={imageurl}
+                      price={price}
+                      rating={rating}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          ) : (
+            <Box
+              sx={{
+                height: "60vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
         </Box>
       </Box>
     </Box>

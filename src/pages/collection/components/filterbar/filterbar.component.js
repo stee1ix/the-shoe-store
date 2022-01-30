@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import {
   Box,
@@ -16,6 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Circle } from "@mui/icons-material";
+import { FilterContext } from "../../../../services/filter/filter.context";
 
 const FilterbarComponent = () => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
@@ -35,6 +36,8 @@ const FilterbarComponent = () => {
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
   };
+
+  const { setCollectionCategory } = useContext(FilterContext);
 
   return (
     <Box
@@ -63,29 +66,51 @@ const FilterbarComponent = () => {
         {/*</ListItemButton>*/}
         <ListItemButton
           selected={selectedCategoryIndex === 0}
-          onClick={(event) => handleCategoryListItemClick(event, 0)}
+          onClick={(event) => {
+            handleCategoryListItemClick(event, 0);
+            setCollectionCategory("running");
+          }}
         >
-          <ListItemText>Football</ListItemText>
+          <ListItemText>Running</ListItemText>
         </ListItemButton>
         <ListItemButton
           selected={selectedCategoryIndex === 1}
-          onClick={(event) => handleCategoryListItemClick(event, 1)}
+          onClick={(event) => {
+            handleCategoryListItemClick(event, 1);
+            setCollectionCategory("sneakers");
+          }}
         >
-          <ListItemText>Formal</ListItemText>
+          <ListItemText>Sneakers</ListItemText>
         </ListItemButton>
         <ListItemButton
           selected={selectedCategoryIndex === 2}
-          onClick={(event) => handleCategoryListItemClick(event, 2)}
+          onClick={(event) => {
+            handleCategoryListItemClick(event, 2);
+            setCollectionCategory("football");
+          }}
         >
-          <ListItemText>Running</ListItemText>
+          <ListItemText>Football</ListItemText>
         </ListItemButton>
       </List>
 
       <Divider />
+
       <List subheader={<ListSubheader component={"div"}>COLOR</ListSubheader>}>
         <ListItemButton
           selected={selectedColorIndex === 0}
-          onClick={(event) => handleColorListItemClick(event, 0)}
+          onClick={(event) => {
+            handleColorListItemClick(event, 0);
+            // setCollectionColor("all");
+          }}
+        >
+          <ListItemText primary={"All"} />
+        </ListItemButton>
+        <ListItemButton
+          selected={selectedColorIndex === 1}
+          onClick={(event) => {
+            handleColorListItemClick(event, 1);
+            // setCollectionColor("red");
+          }}
         >
           <ListItemIcon>
             <Circle color={"error"} />
@@ -93,8 +118,11 @@ const FilterbarComponent = () => {
           <ListItemText primary={"Red"} />
         </ListItemButton>
         <ListItemButton
-          selected={selectedColorIndex === 1}
-          onClick={(event) => handleColorListItemClick(event, 1)}
+          selected={selectedColorIndex === 2}
+          onClick={(event) => {
+            handleColorListItemClick(event, 2);
+            // setCollectionColor("dark");
+          }}
         >
           <ListItemIcon>
             <Circle color={"action"} />
@@ -102,8 +130,11 @@ const FilterbarComponent = () => {
           <ListItemText primary={"Dark"} />
         </ListItemButton>
         <ListItemButton
-          selected={selectedColorIndex === 2}
-          onClick={(event) => handleColorListItemClick(event, 2)}
+          selected={selectedColorIndex === 3}
+          onClick={(event) => {
+            handleColorListItemClick(event, 3);
+            // setCollectionColor("green");
+          }}
         >
           <ListItemIcon>
             <Circle color={"primary"} />
@@ -111,8 +142,11 @@ const FilterbarComponent = () => {
           <ListItemText primary={"Green"} />
         </ListItemButton>
         <ListItemButton
-          selected={selectedColorIndex === 3}
-          onClick={(event) => handleColorListItemClick(event, 3)}
+          selected={selectedColorIndex === 4}
+          onClick={(event) => {
+            handleColorListItemClick(event, 4);
+            // setCollectionColor("blue");
+          }}
         >
           <ListItemIcon>
             <Circle color={"info"} />
@@ -120,6 +154,7 @@ const FilterbarComponent = () => {
           <ListItemText primary={"Blue"} />
         </ListItemButton>
       </List>
+
       <Divider />
 
       <ListSubheader component={"div"}>PRICE RANGE</ListSubheader>

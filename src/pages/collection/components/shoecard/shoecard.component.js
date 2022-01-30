@@ -21,12 +21,12 @@ const ShoecardComponent = ({
   const unratedStarsArray = Array.from(new Array(5 - Math.floor(rating)));
 
   return (
-    <Card sx={{ maxWidth: "100%" }}>
+    <Card sx={{ maxWidth: "100%" }} elevation={3}>
       <CardActionArea>
         <CardMedia
           component={"img"}
           image={imageurl}
-          height={"240"}
+          height={"320"}
           alt={name}
         />
         <CardContent>
@@ -49,7 +49,7 @@ const ShoecardComponent = ({
             {ratingArray.map((_, index) => {
               return (
                 <Icon key={index}>
-                  <Star fontSize={"small"} />
+                  <Star fontSize={"small"} color={"warning"} />
                 </Icon>
               );
             })}
