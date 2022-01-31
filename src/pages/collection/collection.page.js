@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import {
   Box,
@@ -19,11 +19,13 @@ import {
   StarOutline,
 } from "@mui/icons-material";
 
+import { useParams } from "react-router-dom";
+
+import { CollectionContext } from "../../services/collection/collection.context";
+import { FilterContext } from "../../services/filter/filter.context";
+
 import FilterbarComponent from "./components/filterbar/filterbar.component";
 import ShoecardComponent from "./components/shoecard/shoecard.component";
-
-import { useParams } from "react-router-dom";
-import { CollectionContext } from "../../services/collection/collection.context";
 
 const CollectionPage = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -43,11 +45,11 @@ const CollectionPage = () => {
     setSelectedSortIndex(index);
   };
 
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  const { isLoading } = useContext(CollectionContext);
 
-  const { collection, isLoading } = useContext(CollectionContext);
+  const { filteredCollection, resetFilters } = useContext(FilterContext);
 
-  console.log(collection);
+  console.log(filteredCollection);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -67,7 +69,7 @@ const CollectionPage = () => {
           height: "100%",
         }}
       >
-        {/*bar*/}
+        {/*top bar*/}
         <Box
           sx={{
             position: "fixed",
@@ -84,7 +86,11 @@ const CollectionPage = () => {
           <Typography variant={"h4"} fontWeight={"light"}>
             {params.category.toUpperCase()} SHOES
           </Typography>
-          <Button color={"inherit"} sx={{ marginLeft: "auto", marginRight: 2 }}>
+          <Button
+            color={"inherit"}
+            sx={{ marginLeft: "auto", marginRight: 2 }}
+            onClick={resetFilters}
+          >
             CLEAR FILTERS
           </Button>
           <Button
@@ -166,10 +172,10 @@ const CollectionPage = () => {
                 padding: 6,
               }}
             >
-              {collection.map((shoe, index) => {
+              {filteredCollection.map((shoe, index) => {
                 const { name, imageurl, price, rating } = shoe;
                 return (
-                  <Grid item xs={4} key={`index${shoe.name}`}>
+                  <Grid item xs={4} key={`${index}${shoe.name}`}>
                     <ShoecardComponent
                       name={name}
                       imageurl={imageurl}
@@ -189,7 +195,7 @@ const CollectionPage = () => {
                 alignItems: "center",
               }}
             >
-              <CircularProgress />
+              <CircularProgress size={80} />
             </Box>
           )}
         </Box>

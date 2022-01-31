@@ -3,7 +3,9 @@ import { Routes, Route } from "react-router-dom";
 
 import HomePage from "../pages/home/home.page";
 import CollectionPage from "../pages/collection/collection.page";
+
 import { CollectionContextProvider } from "../services/collection/collection.context";
+import { FilterContextProvider } from "../services/filter/filter.context";
 
 const RoutesOperator = () => {
   return (
@@ -14,7 +16,9 @@ const RoutesOperator = () => {
           path={":category"}
           element={
             <CollectionContextProvider>
-              <CollectionPage />
+              <FilterContextProvider>
+                <CollectionPage />
+              </FilterContextProvider>
             </CollectionContextProvider>
           }
         />

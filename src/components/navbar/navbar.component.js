@@ -20,7 +20,7 @@ import { styled, alpha } from "@mui/material/styles";
 
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { FilterContext } from "../../services/filter/filter.context";
+import { CategoryContext } from "../../services/category/category.context";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,7 +65,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { setCollectionName } = useContext(FilterContext);
+  const { setCollectionName } = useContext(CategoryContext);
 
   const [tabValue, setTabValue] = useState(0);
 
@@ -92,7 +92,6 @@ const Navbar = () => {
     <AppBar
       elevation={3}
       color={"inherit"}
-      // sx={{ marginBottom: 2 }}
     >
       <Toolbar>
         <Box

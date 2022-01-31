@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+
 import { collectionRequestAndTransform } from "./collection.services";
-import { FilterContext } from "../filter/filter.context";
+
+import { CategoryContext } from "../category/category.context";
 
 export const CollectionContext = createContext(undefined);
 
@@ -8,7 +10,7 @@ export const CollectionContextProvider = ({ children }) => {
   const [collection, setCollection] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { collectionName, collectionCategory } = useContext(FilterContext);
+  const { collectionName, collectionCategory } = useContext(CategoryContext);
 
   const retrieveCollection = (name, category) => {
     setIsLoading(true);

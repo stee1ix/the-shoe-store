@@ -12,7 +12,7 @@ import {
 import { Star } from "@mui/icons-material";
 
 const ShoecardComponent = ({
-  name = "Nike Mercurial",
+  name = "Default Name",
   imageurl = "https://media.istockphoto.com/photos/running-shoes-picture-id1249496770?b=1&k=20&m=1249496770&s=170667a&w=0&h=_SUv4odBqZIzcXvdK9rqhPBIenbyBspPFiQOSDRi-RI=",
   price = "100",
   rating = 4,
