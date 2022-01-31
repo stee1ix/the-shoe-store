@@ -21,6 +21,10 @@ export const FilterContextProvider = ({ children }) => {
     setFilterSort(0);
   };
 
+  // useEffect(() => {
+  //   return () => setFilteredCollection(collection);
+  // }, []);
+
   useEffect(() => {
     resetFilters();
   }, [collection]);

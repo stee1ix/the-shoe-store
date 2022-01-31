@@ -6,7 +6,7 @@ export const CategoryContextProvider = ({ children }) => {
   const [collectionName, setCollectionName] = useState("mens");
   const [collectionCategory, setCollectionCategory] = useState("running");
 
-  const resetCategory = (name, category = "running") => {
+  const resetCategory = (name="mens", category = "running") => {
     setCollectionName(name);
     setCollectionCategory(category);
   };
