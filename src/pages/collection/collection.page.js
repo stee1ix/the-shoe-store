@@ -47,9 +47,23 @@ const CollectionPage = () => {
 
   const { isLoading } = useContext(CollectionContext);
 
-  const { filteredCollection, resetFilters } = useContext(FilterContext);
+  const {
+    filteredCollection,
+    resetFilters,
+    filterColorIndex,
+    filterPriceRange,
+  } = useContext(FilterContext);
 
   console.log(filteredCollection);
+
+  const arrayEquals = (a, b) => {
+    return (
+      Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index])
+    );
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -87,15 +101,21 @@ const CollectionPage = () => {
             {params.category.toUpperCase()} SHOES
           </Typography>
           <Button
-            color={"inherit"}
+            variant={"outlined"}
+            color={"success"}
             sx={{ marginLeft: "auto", marginRight: 2 }}
             onClick={resetFilters}
+            disabled={
+              filterColorIndex === 0 &&
+              arrayEquals(filterPriceRange, [1000, 10000])
+            }
           >
             CLEAR FILTERS
           </Button>
           <Button
             onClick={handleClick}
             color={"inherit"}
+            variant={"outlined"}
             endIcon={<KeyboardArrowDown />}
           >
             SORT BY
