@@ -9,6 +9,7 @@ export const FilterContext = createContext(undefined);
 export const FilterContextProvider = ({ children }) => {
   const [filterColorIndex, setFilterColorIndex] = useState(0);
   const [filterPriceRange, setFilterPriceRange] = useState([1000, 10000]);
+  const [filterSort, setFilterSort] = useState(0);
 
   const { collection } = useContext(CollectionContext);
 
@@ -17,20 +18,36 @@ export const FilterContextProvider = ({ children }) => {
   const resetFilters = () => {
     setFilterColorIndex(0);
     setFilterPriceRange([1000, 10000]);
+    setFilterSort(0);
   };
 
   useEffect(() => {
     resetFilters();
   }, [collection]);
 
-  const transformFilteredCollection = (colorIndex, price, collection) => {
-    const newCollection = filterCollection(colorIndex, price, collection);
+  const transformFilteredCollection = (
+    colorIndex,
+    price,
+    sortType,
+    collection
+  ) => {
+    const newCollection = filterCollection(
+      colorIndex,
+      price,
+      sortType,
+      collection
+    );
     setFilteredCollection(newCollection);
   };
 
   useEffect(() => {
-    transformFilteredCollection(filterColorIndex, filterPriceRange, collection);
-  }, [filterColorIndex, filterPriceRange]);
+    transformFilteredCollection(
+      filterColorIndex,
+      filterPriceRange,
+      filterSort,
+      collection
+    );
+  }, [filterColorIndex, filterPriceRange, filterSort]);
 
   return (
     <FilterContext.Provider
@@ -40,6 +57,8 @@ export const FilterContextProvider = ({ children }) => {
         setFilterColorIndex,
         filterPriceRange,
         setFilterPriceRange,
+        filterSort,
+        setFilterSort,
         resetFilters,
       }}
     >

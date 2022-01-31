@@ -16,6 +16,14 @@ import { CategoryContext } from "../../../../services/category/category.context"
 import { FilterContext } from "../../../../services/filter/filter.context";
 
 const FilterbarComponent = () => {
+  const { setCollectionCategory } = useContext(CategoryContext);
+  const {
+    filterPriceRange,
+    filterColorIndex,
+    setFilterColorIndex,
+    setFilterPriceRange,
+  } = useContext(FilterContext);
+
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
 
   const handleCategoryListItemClick = (event, index) => {
@@ -29,14 +37,6 @@ const FilterbarComponent = () => {
   const handleSliderChange = (event, newValue) => {
     setFilterPriceRange(newValue);
   };
-
-  const { setCollectionCategory } = useContext(CategoryContext);
-  const {
-    filterPriceRange,
-    filterColorIndex,
-    setFilterColorIndex,
-    setFilterPriceRange,
-  } = useContext(FilterContext);
 
   return (
     <Box

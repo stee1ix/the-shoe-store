@@ -39,12 +39,6 @@ const CollectionPage = () => {
 
   const params = useParams();
 
-  const [selectedSortIndex, setSelectedSortIndex] = useState(0);
-
-  const handleSortListItemClick = (event, index) => {
-    setSelectedSortIndex(index);
-  };
-
   const { isLoading } = useContext(CollectionContext);
 
   const {
@@ -52,9 +46,15 @@ const CollectionPage = () => {
     resetFilters,
     filterColorIndex,
     filterPriceRange,
+    filterSort,
+    setFilterSort,
   } = useContext(FilterContext);
 
   console.log(filteredCollection);
+
+  const handleSortListItemClick = (event, index) => {
+    setFilterSort(index);
+  };
 
   const arrayEquals = (a, b) => {
     return (
@@ -107,7 +107,8 @@ const CollectionPage = () => {
             onClick={resetFilters}
             disabled={
               filterColorIndex === 0 &&
-              arrayEquals(filterPriceRange, [1000, 10000])
+              arrayEquals(filterPriceRange, [1000, 10000]) &&
+              filterSort === 0
             }
           >
             CLEAR FILTERS
@@ -122,7 +123,7 @@ const CollectionPage = () => {
           </Button>
           <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
             <MenuItem
-              selected={selectedSortIndex === 0}
+              selected={filterSort === 0}
               onClick={(event) => {
                 handleSortListItemClick(event, 0);
                 handleClose();
@@ -135,7 +136,7 @@ const CollectionPage = () => {
             </MenuItem>
             <Divider />
             <MenuItem
-              selected={selectedSortIndex === 1}
+              selected={filterSort === 1}
               onClick={(event) => {
                 handleSortListItemClick(event, 1);
                 handleClose();
@@ -144,10 +145,10 @@ const CollectionPage = () => {
               <ListItemIcon>
                 <ArrowUpward />
               </ListItemIcon>
-              <ListItemText>Price: High to Low</ListItemText>
+              <ListItemText>Price: Low to High</ListItemText>
             </MenuItem>
             <MenuItem
-              selected={selectedSortIndex === 2}
+              selected={filterSort === 2}
               onClick={(event) => {
                 handleSortListItemClick(event, 2);
                 handleClose();
@@ -156,7 +157,7 @@ const CollectionPage = () => {
               <ListItemIcon>
                 <ArrowDownward />
               </ListItemIcon>
-              <ListItemText>Price: Low to High</ListItemText>
+              <ListItemText>Price: High to Low</ListItemText>
             </MenuItem>
           </Menu>
         </Box>

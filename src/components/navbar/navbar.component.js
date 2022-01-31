@@ -14,7 +14,6 @@ import {
   Search as SearchIcon,
   ShoppingCart,
   AccountCircle,
-  ShoppingBagOutlined,
 } from "@mui/icons-material";
 import { styled, alpha } from "@mui/material/styles";
 
@@ -89,10 +88,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <AppBar
-      elevation={3}
-      color={"inherit"}
-    >
+    <AppBar elevation={3} color={"inherit"}>
       <Toolbar>
         <Box
           sx={{
@@ -102,11 +98,6 @@ const Navbar = () => {
             userSelect: "none",
           }}
         >
-          {/*<ShoppingBagOutlined*/}
-          {/*  sx={{*/}
-          {/*    marginRight: 2,*/}
-          {/*  }}*/}
-          {/*/>*/}
           <Typography
             variant={"h6"}
             noWrap
