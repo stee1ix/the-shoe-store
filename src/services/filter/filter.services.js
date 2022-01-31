@@ -52,3 +52,15 @@ const transformColorIndex = (index) => {
       return "all";
   }
 };
+
+export const transformCategoryName = (name) => {
+  // eslint-disable-next-line default-case
+  switch (name) {
+    case "running":
+      return 0;
+    case "sneakers":
+      return 1;
+    case "football":
+      return 2;
+  }
+};

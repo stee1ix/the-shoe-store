@@ -6,6 +6,11 @@ export const CategoryContextProvider = ({ children }) => {
   const [collectionName, setCollectionName] = useState("mens");
   const [collectionCategory, setCollectionCategory] = useState("running");
 
+  const resetCategory = (name, category = "running") => {
+    setCollectionName(name);
+    setCollectionCategory(category);
+  };
+
   return (
     <CategoryContext.Provider
       value={{
@@ -13,6 +18,7 @@ export const CategoryContextProvider = ({ children }) => {
         collectionCategory,
         setCollectionName,
         setCollectionCategory,
+        resetCategory,
       }}
     >
       {children}

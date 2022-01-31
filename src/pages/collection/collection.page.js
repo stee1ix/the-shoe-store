@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
   Box,
@@ -26,6 +26,7 @@ import { FilterContext } from "../../services/filter/filter.context";
 
 import FilterbarComponent from "./components/filterbar/filterbar.component";
 import ShoecardComponent from "./components/shoecard/shoecard.component";
+import { CategoryContext } from "../../services/category/category.context";
 
 const CollectionPage = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -38,6 +39,8 @@ const CollectionPage = () => {
   };
 
   const params = useParams();
+
+  const { resetCategory } = useContext(CategoryContext);
 
   const { isLoading } = useContext(CollectionContext);
 
@@ -64,6 +67,10 @@ const CollectionPage = () => {
       a.every((val, index) => val === b[index])
     );
   };
+
+  useEffect(() => {
+    return () => resetCategory(params.category);
+  }, []);
 
   return (
     <Box sx={{ display: "flex" }}>
