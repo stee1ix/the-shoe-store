@@ -9,7 +9,7 @@ export const collectionRequestAndTransform = async (name, category) => {
     collection(db, `collection/${name}/${category}`)
   );
   await querySnapshot.forEach((doc) => {
-    docs.push(doc.data());
+    docs.push({ id: doc.id, ...doc.data() });
   });
   return docs;
 };

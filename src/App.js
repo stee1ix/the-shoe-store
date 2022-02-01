@@ -1,6 +1,6 @@
 import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import Navbar from "./components/navbar/navbar.component";
-import RoutesOperator from "./routes/routes.operator";
+import AppRoutes from "./routes/app.routes";
 import { CategoryContextProvider } from "./services/category/category.context";
 
 const theme = createTheme({
@@ -23,7 +23,7 @@ function App() {
           <Navbar />
           <Box sx={{ height: 64 }} />
           <main>
-            <RoutesOperator />
+            <AppRoutes />
           </main>
         </CategoryContextProvider>
       </ThemeProvider>
