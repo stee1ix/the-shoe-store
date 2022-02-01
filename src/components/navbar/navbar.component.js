@@ -69,21 +69,18 @@ const Navbar = () => {
   const [tabValue, setTabValue] = useState(0);
 
   useEffect(() => {
-    switch (location.pathname) {
-      case "/collection/mens":
-        setTabValue(1);
-        setCollectionName("mens");
-        break;
-      case "/collection/womens":
-        setTabValue(2);
-        setCollectionName("womens");
-        break;
-      case "/collection/kids":
-        setTabValue(3);
-        setCollectionName("kids");
-        break;
-      default:
-        setTabValue(0);
+    if (location.pathname.includes("/collection/mens")) {
+      setTabValue(1);
+      setCollectionName("mens");
+    } else if (location.pathname.includes("/collection/womens")) {
+      console.log(location.pathname.includes("/collection/womens"));
+      setTabValue(2);
+      setCollectionName("womens");
+    } else if (location.pathname.includes("/collection/kids")) {
+      setTabValue(3);
+      setCollectionName("kids");
+    } else {
+      setTabValue(0);
     }
   }, [location.pathname]);
 

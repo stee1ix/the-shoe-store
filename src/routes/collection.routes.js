@@ -5,7 +5,6 @@ import { CollectionContextProvider } from "../services/collection/collection.con
 import { FilterContextProvider } from "../services/filter/filter.context";
 
 import CollectionPage from "../pages/collection/collection.page";
-import FilterbarComponent from "../pages/collection/components/filterbar/filterbar.component";
 
 const CollectionRoutes = () => {
   return (
@@ -14,10 +13,6 @@ const CollectionRoutes = () => {
         <Routes>
           <Route>
             <Route index path={":category"} element={<CollectionPage />} />
-            <Route
-              path={":category/:shoeid"}
-              element={<FilterbarComponent />}
-            />
           </Route>
         </Routes>
       </FilterContextProvider>

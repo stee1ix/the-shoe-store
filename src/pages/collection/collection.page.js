@@ -27,6 +27,7 @@ import { FilterContext } from "../../services/filter/filter.context";
 import FilterbarComponent from "./components/filterbar/filterbar.component";
 import ShoecardComponent from "./components/shoecard/shoecard.component";
 import { CategoryContext } from "../../services/category/category.context";
+import DetailsmodalComponent from "./components/detailsmodal/detailsmodal.component";
 
 const CollectionPage = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -71,6 +72,16 @@ const CollectionPage = () => {
   useEffect(() => {
     return () => resetCategory(params.category);
   }, []);
+
+  const [modalData, setModalData] = useState({});
+
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = (id, name, imageurl, price, rating,color) => {
+    const data = { id, name, imageurl, price, rating,color };
+    setModalData(data);
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => setOpenModal(false);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -201,14 +212,17 @@ const CollectionPage = () => {
               }}
             >
               {filteredCollection.map((shoe, index) => {
-                const { name, imageurl, price, rating } = shoe;
+                const { name, imageurl, price, rating, id,color } = shoe;
                 return (
-                  <Grid item xs={4} key={`${index}${shoe.name}`}>
+                  <Grid item xs={4} key={`${index}${id}`}>
                     <ShoecardComponent
                       name={name}
                       imageurl={imageurl}
                       price={price}
                       rating={rating}
+                      id={id}
+                      color={color}
+                      onClick={handleOpenModal}
                     />
                   </Grid>
                 );
@@ -228,6 +242,11 @@ const CollectionPage = () => {
           )}
         </Box>
       </Box>
+      <DetailsmodalComponent
+        open={openModal}
+        handleClose={handleCloseModal}
+        data={modalData}
+      />
     </Box>
   );
 };
