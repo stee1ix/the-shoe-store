@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
 import {
   Backdrop,
   Box,
   Button,
   Fade,
   FormControl,
+  IconButton,
   InputLabel,
   ListItemIcon,
   MenuItem,
@@ -17,9 +19,12 @@ import {
 } from "@mui/material";
 import {
   Circle,
+  Favorite,
   FavoriteBorder,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
+
+import { CartContext } from "../../../../services/cart/cart.context";
 
 const style = {
   position: "absolute",
@@ -66,6 +71,45 @@ const DetailsmodalComponent = ({ open, handleClose, data }) => {
     setQuantity(event.target.value);
   };
 
+  const [inCart, setInCart] = useState(false);
+
+  const { items, setItems } = useContext(CartContext);
+
+  const checkItemInCart = (id) => {
+    const found = items.find((item) => {
+      return item.id === id;
+    });
+
+    if (found !== undefined) {
+      setInCart(true);
+    } else {
+      setInCart(false);
+    }
+  };
+
+  useEffect(() => {
+    checkItemInCart(id);
+  }, [id, items]);
+
+  const addToCart = () => {
+    const newItem = {
+      id,
+      name,
+      imageurl,
+      size,
+      price,
+      quantity,
+    };
+    setItems([...items, newItem]);
+  };
+
+  const removeFromCart = (id) => {
+    const newItems = items.filter((item) => {
+      return item.id !== id;
+    });
+    setItems(newItems);
+  };
+
   return (
     <Modal
       open={open}
@@ -90,23 +134,41 @@ const DetailsmodalComponent = ({ open, handleClose, data }) => {
               height={"100%"}
               width={"50%"}
               style={{ objectFit: "cover", borderRadius: "4px" }}
+              alt={name}
             />
             <Box sx={{ width: 48 }} />
             <Box
               sx={{
                 display: "flex",
+                flex: 1,
                 flexDirection: "column",
                 justifyContent: "space-between",
               }}
             >
               <Box>
-                <Typography variant={"h4"}>{name}</Typography>
-                <Rating
-                  value={rating}
-                  readOnly
-                  size={"large"}
-                  sx={{ marginTop: 1 }}
-                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Box>
+                    <Typography variant={"h4"}>{name}</Typography>
+                    <Rating
+                      value={rating}
+                      readOnly
+                      size={"medium"}
+                      sx={{ marginTop: 1 }}
+                    />
+                  </Box>
+                  <IconButton
+                    color={"error"}
+                    size={"large"}
+                    sx={{ alignSelf: "flex-start" }}
+                  >
+                    <Favorite fontSize={"large"} />
+                  </IconButton>
+                </Box>
                 {/*color and sizes*/}
                 <Box
                   sx={{
@@ -195,24 +257,42 @@ const DetailsmodalComponent = ({ open, handleClose, data }) => {
                 </Box>
               </Box>
               <Box
-                sx={{ display: "flex", alignItems: "center", width: "100%" }}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100%",
+                }}
               >
-                <Button
-                  variant={"outlined"}
-                  size={"large"}
-                  startIcon={<FavoriteBorder />}
-                  sx={{ flex: 1, height: 56 }}
-                >
-                  ADD TO FAVOURITES
-                </Button>
-                <Button
-                  variant={"contained"}
-                  size={"large"}
-                  startIcon={<ShoppingCartOutlined />}
-                  sx={{ marginLeft: 2, height: 56 }}
-                >
-                  ADD TO CART
-                </Button>
+                {/*<Button*/}
+                {/*  variant={"outlined"}*/}
+                {/*  size={"large"}*/}
+                {/*  startIcon={<FavoriteBorder />}*/}
+                {/*  sx={{ flex: 1, height: 56 }}*/}
+                {/*>*/}
+                {/*  ADD TO FAVOURITES*/}
+                {/*</Button>*/}
+                {!inCart ? (
+                  <Button
+                    variant={"contained"}
+                    size={"large"}
+                    startIcon={<ShoppingCartOutlined />}
+                    sx={{ width: "100%", height: 56 }}
+                    onClick={addToCart}
+                  >
+                    ADD TO CART
+                  </Button>
+                ) : (
+                  <Button
+                    variant={"contained"}
+                    color={"error"}
+                    size={"large"}
+                    startIcon={<ShoppingCartOutlined />}
+                    sx={{ width: "100%", height: 56 }}
+                    onClick={() => removeFromCart(id)}
+                  >
+                    REMOVE FROM CART
+                  </Button>
+                )}
               </Box>
             </Box>
           </Box>

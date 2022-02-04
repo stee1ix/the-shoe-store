@@ -20,6 +20,9 @@ import { styled, alpha } from "@mui/material/styles";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { CategoryContext } from "../../services/category/category.context";
+import { CartContext } from "../../services/cart/cart.context";
+
+import CartComponent from "./components/cart.component";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,6 +68,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const { setCollectionName } = useContext(CategoryContext);
+  const { items } = useContext(CartContext);
 
   const [tabValue, setTabValue] = useState(0);
 
@@ -83,6 +87,12 @@ const Navbar = () => {
       setTabValue(0);
     }
   }, [location.pathname]);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleCartIconClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   return (
     <AppBar elevation={3} color={"inherit"}>
@@ -155,11 +165,16 @@ const Navbar = () => {
               marginLeft: 2,
             }}
           >
-            <IconButton color={"inherit"} size={"large"}>
-              <Badge badgeContent={17} color="error">
+            <IconButton
+              color={"inherit"}
+              size={"large"}
+              onClick={handleCartIconClick}
+            >
+              <Badge badgeContent={items.length} color="error">
                 <ShoppingCart />
               </Badge>
             </IconButton>
+            <CartComponent anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
             <IconButton color={"inherit"} size={"large"}>
               <AccountCircle />
             </IconButton>
