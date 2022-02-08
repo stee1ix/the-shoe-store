@@ -8,9 +8,11 @@ import {
   Popover,
   Typography,
 } from "@mui/material";
-import { CartContext } from "../../../services/cart/cart.context";
-import { useNavigate } from "react-router-dom";
 import { Cancel } from "@mui/icons-material";
+
+import { useNavigate } from "react-router-dom";
+
+import { CartContext } from "../../../services/cart/cart.context";
 import { removeFromCart } from "../../../services/cart/cart.services";
 
 const CartItem = ({ name, imageurl, size, price, quantity, id }) => {
@@ -55,7 +57,7 @@ const CartItem = ({ name, imageurl, size, price, quantity, id }) => {
           size={"small"}
           onClick={() => removeFromCart(items, setItems, id)}
         >
-          <Cancel fontSize={"small"} />
+          <Cancel fontSize={"inherit"} />
         </IconButton>
       </Box>
     </Box>
@@ -147,12 +149,13 @@ const CartComponent = ({ anchorEl, setAnchorEl }) => {
           </Box>
           <Button
             variant={"contained"}
+            size={"large"}
             sx={{
-              marginTop: 2,
+              marginTop: 4,
               width: "100%",
             }}
             onClick={() => {
-              navigate("cart");
+              navigate("checkout");
               handleClose();
             }}
           >

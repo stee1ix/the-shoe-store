@@ -165,7 +165,7 @@ const Navbar = () => {
               marginLeft: 2,
             }}
           >
-            {location.pathname !== "/cart" && (
+            {location.pathname !== "/checkout" && (
               <IconButton
                 color={"inherit"}
                 size={"large"}

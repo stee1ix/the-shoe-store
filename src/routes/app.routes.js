@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import HomePage from "../pages/home/home.page";
-import CartPage from "../pages/cart/cart.page";
+import CheckoutPage from "../pages/checkout/checkout.page";
 
 import CollectionRoutes from "./collection.routes";
 
@@ -11,7 +11,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="collection/*" element={<CollectionRoutes />} />
-      <Route path="cart" element={<CartPage />} />
+      <Route path="checkout" element={<CheckoutPage />} />
     </Routes>
   );
 };

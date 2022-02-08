@@ -100,6 +100,7 @@ const DetailsmodalComponent = ({ open, handleClose, data }) => {
       size,
       price,
       quantity,
+      color,
     };
     setItems([...items, newItem]);
   };
