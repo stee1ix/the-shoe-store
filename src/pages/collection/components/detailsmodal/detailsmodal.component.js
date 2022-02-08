@@ -25,6 +25,7 @@ import {
 } from "@mui/icons-material";
 
 import { CartContext } from "../../../../services/cart/cart.context";
+import { removeFromCart } from "../../../../services/cart/cart.services";
 
 const style = {
   position: "absolute",
@@ -101,13 +102,6 @@ const DetailsmodalComponent = ({ open, handleClose, data }) => {
       quantity,
     };
     setItems([...items, newItem]);
-  };
-
-  const removeFromCart = (id) => {
-    const newItems = items.filter((item) => {
-      return item.id !== id;
-    });
-    setItems(newItems);
   };
 
   return (
@@ -288,7 +282,7 @@ const DetailsmodalComponent = ({ open, handleClose, data }) => {
                     size={"large"}
                     startIcon={<ShoppingCartOutlined />}
                     sx={{ width: "100%", height: 56 }}
-                    onClick={() => removeFromCart(id)}
+                    onClick={() => removeFromCart(items, setItems, id)}
                   >
                     REMOVE FROM CART
                   </Button>

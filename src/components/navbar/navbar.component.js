@@ -165,15 +165,18 @@ const Navbar = () => {
               marginLeft: 2,
             }}
           >
-            <IconButton
-              color={"inherit"}
-              size={"large"}
-              onClick={handleCartIconClick}
-            >
-              <Badge badgeContent={items.length} color="error">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
+            {location.pathname !== "/cart" && (
+              <IconButton
+                color={"inherit"}
+                size={"large"}
+                onClick={handleCartIconClick}
+              >
+                <Badge badgeContent={items.length} color="error">
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            )}
+
             <CartComponent anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
             <IconButton color={"inherit"} size={"large"}>
               <AccountCircle />

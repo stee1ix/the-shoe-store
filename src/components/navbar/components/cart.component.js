@@ -1,8 +1,20 @@
 import React, { useContext } from "react";
-import { Badge, Box, Divider, Popover, Typography } from "@mui/material";
+import {
+  Badge,
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  Popover,
+  Typography,
+} from "@mui/material";
 import { CartContext } from "../../../services/cart/cart.context";
+import { useNavigate } from "react-router-dom";
+import { Cancel } from "@mui/icons-material";
+import { removeFromCart } from "../../../services/cart/cart.services";
 
-const CartItem = ({ name, imageurl, size, price, quantity }) => {
+const CartItem = ({ name, imageurl, size, price, quantity, id }) => {
+  const { items, setItems } = useContext(CartContext);
   return (
     <Box
       sx={{
@@ -26,16 +38,33 @@ const CartItem = ({ name, imageurl, size, price, quantity }) => {
           color={"dimgrey"}
         >{`₹ ${price} - ${size} UK`}</Typography>
       </Box>
-      <Typography
-        variant={"subtitle1"}
-        sx={{ marginLeft: "auto" }}
-        noWrap
-      >{`₹ ${quantity * price}`}</Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          flex: 1,
+        }}
+      >
+        <Typography
+          variant={"subtitle1"}
+          sx={{ marginLeft: "auto" }}
+          noWrap
+        >{`₹ ${quantity * price}`}</Typography>
+        <IconButton
+          size={"small"}
+          onClick={() => removeFromCart(items, setItems, id)}
+        >
+          <Cancel fontSize={"small"} />
+        </IconButton>
+      </Box>
     </Box>
   );
 };
 
 const CartComponent = ({ anchorEl, setAnchorEl }) => {
+  const navigate = useNavigate();
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -69,6 +98,7 @@ const CartComponent = ({ anchorEl, setAnchorEl }) => {
                 size={size}
                 price={price}
                 quantity={quantity}
+                id={id}
               />
             );
           })}
@@ -115,6 +145,19 @@ const CartComponent = ({ anchorEl, setAnchorEl }) => {
             </Typography>
             <Typography variant={"h6"}>{`₹ ${total + 40}`}</Typography>
           </Box>
+          <Button
+            variant={"contained"}
+            sx={{
+              marginTop: 2,
+              width: "100%",
+            }}
+            onClick={() => {
+              navigate("cart");
+              handleClose();
+            }}
+          >
+            Go to checkout
+          </Button>
         </Box>
       ) : (
         <Box sx={{ padding: 6, textAlign: "center" }}>
