@@ -1,15 +1,11 @@
 import React, { useContext } from "react";
-import {
-  Box,
-  Button,
-  Divider,
-  Paper,
-  Typography,
-} from "@mui/material";
-import {  Delete } from "@mui/icons-material";
+import { Box, Button, Divider, Paper, Typography } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
 import { CartContext } from "../../../services/cart/cart.context";
 import { removeFromCart } from "../../../services/cart/cart.services";
+
+import { useNavigate } from "react-router-dom";
 
 const Item = ({ name, imageurl, size, price, quantity, color, id }) => {
   const { items, setItems } = useContext(CartContext);
@@ -20,7 +16,9 @@ const Item = ({ name, imageurl, size, price, quantity, color, id }) => {
           display: "flex",
           marginBottom: 4,
           alignItems: "center",
-          flexDirection: "row",paddingLeft:4,paddingRight:4
+          flexDirection: "row",
+          paddingLeft: 4,
+          paddingRight: 4,
         }}
       >
         <img
@@ -61,22 +59,11 @@ const Item = ({ name, imageurl, size, price, quantity, color, id }) => {
             size={"small"}
             color={"error"}
             startIcon={<Delete />}
-            sx={{padding:0}}
+            sx={{ padding: 0 }}
             onClick={() => removeFromCart(items, setItems, id)}
           >
             Remove
           </Button>
-          {/*<Box sx={{ display: "flex", alignItems: "center" }}>*/}
-          {/*  <Typography color={"dimgrey"} fontSize={"small"}>*/}
-          {/*    Remove from cart*/}
-          {/*  </Typography>*/}
-          {/*  <IconButton*/}
-          {/*    size={"small"}*/}
-          {/*    onClick={() => removeFromCart(items, setItems, id)}*/}
-          {/*  >*/}
-          {/*    <Cancel fontSize={"inherit"} />*/}
-          {/*  </IconButton>*/}
-          {/*</Box>*/}
         </Box>
       </Box>
       <Divider />
@@ -85,6 +72,8 @@ const Item = ({ name, imageurl, size, price, quantity, color, id }) => {
 };
 
 const ReviewItemsComponent = () => {
+  const navigate = useNavigate();
+
   const { items, total } = useContext(CartContext);
 
   return (
@@ -98,13 +87,31 @@ const ReviewItemsComponent = () => {
           marginRight: 16,
         }}
       >
-        <Typography
-          variant={"h3"}
-          fontWeight={"lighter"}
-          sx={{ marginBottom: 6 }}
-        >
-          Cart Items
-        </Typography>
+        {items.length > 0 ? (
+          <Typography
+            variant={"h3"}
+            fontWeight={"lighter"}
+            sx={{ marginBottom: 6 }}
+          >
+            Cart Items
+          </Typography>
+        ) : (
+          <>
+            <Typography
+              variant={"h3"}
+              fontWeight={"lighter"}
+              sx={{ marginBottom: 6 }}
+            >
+              No items in cart
+            </Typography>
+            <Button
+              variant={"contained"}
+              onClick={() => navigate("/collection/mens")}
+            >
+              Explore collection
+            </Button>
+          </>
+        )}
         {items.map((item) => {
           const { id, name, imageurl, size, price, quantity, color } = item;
 
@@ -122,58 +129,60 @@ const ReviewItemsComponent = () => {
           );
         })}
       </Box>
-      <Paper
-        sx={{
-          width: 300,
-          height: "fit-content",
-          padding: 2,
-        }}
-      >
-        <Typography variant={"h5"} sx={{ marginBottom: 4 }}>
-          Order Summary
-        </Typography>
-        <Box
+      {items.length > 0 && (
+        <Paper
           sx={{
-            display: "flex",
-            flex: 1,
-            justifyContent: "space-between",
+            width: 300,
+            height: "fit-content",
+            padding: 2,
           }}
         >
-          <Typography variant={"h6"} color={"dimgrey"}>
-            Subtotal
+          <Typography variant={"h5"} sx={{ marginBottom: 4 }}>
+            Order Summary
           </Typography>
-          <Typography variant={"h6"}>{`₹ ${total}`}</Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flex: 1,
-            justifyContent: "space-between",
-            marginTop: 2,
-            marginBottom: 2,
-          }}
-        >
-          <Typography variant={"h6"} color={"dimgrey"}>
-            Shipping
-          </Typography>
-          <Typography variant={"h6"}>₹ 40</Typography>
-        </Box>
-        <Divider />
-        <Box
-          sx={{
-            display: "flex",
-            flex: 1,
-            justifyContent: "space-between",
-            marginTop: 2,
-            alignItems: "flex-end",
-          }}
-        >
-          <Typography variant={"h6"} color={"grey"}>
-            Total
-          </Typography>
-          <Typography variant={"h6"}>{`₹ ${total + 40}`}</Typography>
-        </Box>
-      </Paper>
+          <Box
+            sx={{
+              display: "flex",
+              flex: 1,
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography variant={"h6"} color={"dimgrey"}>
+              Subtotal
+            </Typography>
+            <Typography variant={"h6"}>{`₹ ${total}`}</Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flex: 1,
+              justifyContent: "space-between",
+              marginTop: 2,
+              marginBottom: 2,
+            }}
+          >
+            <Typography variant={"h6"} color={"dimgrey"}>
+              Shipping
+            </Typography>
+            <Typography variant={"h6"}>+ ₹ 40</Typography>
+          </Box>
+          <Divider />
+          <Box
+            sx={{
+              display: "flex",
+              flex: 1,
+              justifyContent: "space-between",
+              marginTop: 2,
+              alignItems: "flex-end",
+            }}
+          >
+            <Typography variant={"h6"} color={"grey"}>
+              Total
+            </Typography>
+            <Typography variant={"h6"}>{`₹ ${total + 40}`}</Typography>
+          </Box>
+        </Paper>
+      )}
     </Box>
   );
 };

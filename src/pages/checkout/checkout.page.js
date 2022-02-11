@@ -3,6 +3,7 @@ import { Box, IconButton, Step, StepLabel, Stepper } from "@mui/material";
 import { ArrowBack, ArrowForward, Check } from "@mui/icons-material";
 
 import ReviewItemsComponent from "./components/reviewItems.component";
+import FilldetailsComponent from "./components/filldetails.component";
 
 const steps = ["Review Items", "Fill Address", "Payment", "Done"];
 
@@ -42,6 +43,7 @@ const CheckoutPage = () => {
           })}
         </Stepper>
         {activeStep + 1 === 1 && <ReviewItemsComponent />}
+        {activeStep + 1 === 2 && <FilldetailsComponent />}
         <Box
           sx={{
             width: "100%",
