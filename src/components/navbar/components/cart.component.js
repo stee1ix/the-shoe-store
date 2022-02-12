@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../../services/cart/cart.context";
 import { removeFromCart } from "../../../services/cart/cart.services";
 
+import EmptyCart from "../../../assets/empty_cart.svg";
+
 const CartItem = ({ name, imageurl, size, price, quantity, id }) => {
   const { items, setItems } = useContext(CartContext);
   return (
@@ -165,9 +167,7 @@ const CartComponent = ({ anchorEl, setAnchorEl }) => {
       ) : (
         <Box sx={{ padding: 6, textAlign: "center" }}>
           <img
-            src={
-              "https://cdn3.iconfinder.com/data/icons/smileys-people-smiley-essential/48/v-44-512.png"
-            }
+            src={EmptyCart}
             alt="empty cart"
             style={{ width: 120, height: 120, marginBottom: "32px" }}
           />

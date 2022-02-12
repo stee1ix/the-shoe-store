@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Box, TextField, Typography } from "@mui/material";
 
-const FilldetailsComponent = ({ setArrowsDisabled }) => {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [phonenumber, setPhonenumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-
+const FilldetailsComponent = ({
+  firstname,
+  lastname,
+  address,
+  city,
+  country,
+  email,
+  phonenumber,
+  pincode,
+  setAddress,
+  setCity,
+  setCountry,
+  setEmail,
+  setFirstname,
+  setLastname,
+  setPhonenumber,
+  setPincode,
+  setArrowsDisabled,
+}) => {
   useEffect(() => {
     if (
       firstname !== "" &&
