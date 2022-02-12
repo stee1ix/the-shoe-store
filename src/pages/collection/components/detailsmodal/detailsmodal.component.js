@@ -17,12 +17,7 @@ import {
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
-import {
-  Circle,
-  Favorite,
-  FavoriteBorder,
-  ShoppingCartOutlined,
-} from "@mui/icons-material";
+import { Circle, Favorite, ShoppingCartOutlined } from "@mui/icons-material";
 
 import { CartContext } from "../../../../services/cart/cart.context";
 import { removeFromCart } from "../../../../services/cart/cart.services";
@@ -258,14 +253,6 @@ const DetailsmodalComponent = ({ open, handleClose, data }) => {
                   width: "100%",
                 }}
               >
-                {/*<Button*/}
-                {/*  variant={"outlined"}*/}
-                {/*  size={"large"}*/}
-                {/*  startIcon={<FavoriteBorder />}*/}
-                {/*  sx={{ flex: 1, height: 56 }}*/}
-                {/*>*/}
-                {/*  ADD TO FAVOURITES*/}
-                {/*</Button>*/}
                 {!inCart ? (
                   <Button
                     variant={"contained"}

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import StripeCheckout from "react-stripe-checkout";
-import { CartContext } from "../../../services/cart/cart.context";
 import { Box, Button, Divider, Paper, Typography } from "@mui/material";
+import StripeCheckout from "react-stripe-checkout";
+
+import { CartContext } from "../../../services/cart/cart.context";
 
 const StripecheckoutComponent = ({ handleNext, email }) => {
   const { total } = useContext(CartContext);

@@ -23,10 +23,10 @@ import { useParams } from "react-router-dom";
 
 import { CollectionContext } from "../../services/collection/collection.context";
 import { FilterContext } from "../../services/filter/filter.context";
+import { CategoryContext } from "../../services/category/category.context";
 
 import FilterbarComponent from "./components/filterbar/filterbar.component";
 import ShoecardComponent from "./components/shoecard/shoecard.component";
-import { CategoryContext } from "../../services/category/category.context";
 import DetailsmodalComponent from "./components/detailsmodal/detailsmodal.component";
 
 const CollectionPage = () => {
@@ -76,8 +76,8 @@ const CollectionPage = () => {
   const [modalData, setModalData] = useState({});
 
   const [openModal, setOpenModal] = useState(false);
-  const handleOpenModal = (id, name, imageurl, price, rating,color) => {
-    const data = { id, name, imageurl, price, rating,color };
+  const handleOpenModal = (id, name, imageurl, price, rating, color) => {
+    const data = { id, name, imageurl, price, rating, color };
     setModalData(data);
     setOpenModal(true);
   };
@@ -212,7 +212,7 @@ const CollectionPage = () => {
               }}
             >
               {filteredCollection.map((shoe, index) => {
-                const { name, imageurl, price, rating, id,color } = shoe;
+                const { name, imageurl, price, rating, id, color } = shoe;
                 return (
                   <Grid item xs={4} key={`${index}${id}`}>
                     <ShoecardComponent

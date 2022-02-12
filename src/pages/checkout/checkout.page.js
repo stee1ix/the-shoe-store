@@ -4,9 +4,12 @@ import { ArrowBack, ArrowForward, Check } from "@mui/icons-material";
 
 import ReviewItemsComponent from "./components/reviewItems.component";
 import FilldetailsComponent from "./components/filldetails.component";
-import { CartContext } from "../../services/cart/cart.context";
+
 import StripecheckoutComponent from "./components/stripecheckout.component";
 import ConfirmComponent from "./components/confirm.component";
+
+import { CartContext } from "../../services/cart/cart.context";
+
 import { useNavigate } from "react-router-dom";
 
 import ReactConfetti from "react-confetti";
