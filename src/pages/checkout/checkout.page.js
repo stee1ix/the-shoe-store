@@ -1,5 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, IconButton, Step, StepLabel, Stepper } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Step,
+  StepLabel,
+  Stepper,
+  Typography,
+} from "@mui/material";
 import { ArrowBack, ArrowForward, Check } from "@mui/icons-material";
 
 import ReviewItemsComponent from "./components/reviewItems.component";
@@ -125,6 +132,7 @@ const CheckoutPage = () => {
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           {items.length > 0 && (
@@ -140,20 +148,41 @@ const CheckoutPage = () => {
                   <ArrowBack fontSize={"large"} />
                 </IconButton>
               )}
-              {activeStep !== 2 && activeStep !== 3 && (
-                <IconButton
-                  color="inherit"
-                  size={"large"}
-                  disabled={activeStep >= steps.length || arrowsDisabled}
-                  onClick={handleNext}
-                  sx={{ border: 1, borderColor: "#cccccc", marginLeft: "auto" }}
+              {(activeStep === 0 || activeStep === 1) && (
+                <Box
+                  sx={{
+                    marginLeft: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
                 >
-                  {activeStep >= steps.length - 1 ? (
-                    <Check fontSize={"large"} />
-                  ) : (
-                    <ArrowForward fontSize={"large"} />
+                  {activeStep === 1 && arrowsDisabled && (
+                    <Typography
+                      sx={{ marginRight: 4 }}
+                      variant={"subtitle1"}
+                      color={"dimgrey"}
+                    >
+                      Fill details to continue
+                    </Typography>
                   )}
-                </IconButton>
+
+                  <IconButton
+                    color="inherit"
+                    size={"large"}
+                    disabled={activeStep >= steps.length || arrowsDisabled}
+                    onClick={handleNext}
+                    sx={{
+                      border: 1,
+                      borderColor: "#cccccc",
+                    }}
+                  >
+                    {activeStep >= steps.length - 1 ? (
+                      <Check fontSize={"large"} />
+                    ) : (
+                      <ArrowForward fontSize={"large"} />
+                    )}
+                  </IconButton>
+                </Box>
               )}
             </>
           )}

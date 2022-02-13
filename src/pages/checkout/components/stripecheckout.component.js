@@ -11,7 +11,6 @@ const StripecheckoutComponent = ({ handleNext, email }) => {
     "pk_test_51IpB8QSJ0E6JjThJ6zIZTPFnV8ixCeLv8X8Y8zymIItpqNJLXvrBuH6rSGdM9pEmPn23hZPLc7JWZ0VQYsFYpGWG00dzy5PWbR";
 
   const onToken = (token) => {
-    console.log(token);
     handleNext();
   };
 
@@ -92,7 +91,7 @@ const StripecheckoutComponent = ({ handleNext, email }) => {
           amount={(total + 40) * 100}
           token={onToken}
           stripeKey={publishableKey}
-          email={email}
+          email={email.toString()}
         >
           <Button
             sx={{ marginTop: 2, height: 56 }}

@@ -178,7 +178,11 @@ const Navbar = () => {
             )}
 
             <CartComponent anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
-            <IconButton color={"inherit"} size={"large"}>
+            <IconButton
+              color={"inherit"}
+              size={"large"}
+              onClick={() => navigate("authentication")}
+            >
               <AccountCircle />
             </IconButton>
           </Box>

@@ -1,17 +1,28 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
+import CollectionRoutes from "./collection.routes";
+
 import HomePage from "../pages/home/home.page";
 import CheckoutPage from "../pages/checkout/checkout.page";
+import AuthenticationPage from "../pages/account/authentication.page";
 
-import CollectionRoutes from "./collection.routes";
+import { RequireAuth } from "../services/authentication/authentication.services";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="authentication" element={<AuthenticationPage />} />
       <Route path="collection/*" element={<CollectionRoutes />} />
-      <Route path="checkout" element={<CheckoutPage />} />
+      <Route
+        path="checkout"
+        element={
+          <RequireAuth>
+            <CheckoutPage />
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 };
