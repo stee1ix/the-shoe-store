@@ -1,7 +1,5 @@
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { app } from "../firebase/firebase.config";
-
-const db = getFirestore(app);
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/firebase.config";
 
 export const collectionRequestAndTransform = async (name, category) => {
   const docs = [];

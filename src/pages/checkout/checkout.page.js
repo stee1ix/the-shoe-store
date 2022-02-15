@@ -112,11 +112,10 @@ const CheckoutPage = () => {
             firstname={firstname}
             lastname={lastname}
             email={email}
-            phonenumber={phonenumber}
             address={address}
-            pincode={pincode}
             city={city}
             country={country}
+            phonenumber={phonenumber}
           />
         )}
         {activeStep + 1 === 4 && <ConfirmComponent handleNext={handleNext} />}

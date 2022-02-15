@@ -4,13 +4,51 @@ import StripeCheckout from "react-stripe-checkout";
 
 import { CartContext } from "../../../services/cart/cart.context";
 
-const StripecheckoutComponent = ({ handleNext, email }) => {
+import { db } from "../../../services/firebase/firebase.config";
+import { addDoc, collection } from "firebase/firestore";
+import { auth } from "../../../services/authentication/authentication.services";
+
+const StripecheckoutComponent = ({
+  handleNext,
+  email,
+  firstname,
+  lastname,
+  address,
+  city,
+  country,
+  phonenumber,
+}) => {
   const { total } = useContext(CartContext);
 
   const publishableKey =
     "pk_test_51IpB8QSJ0E6JjThJ6zIZTPFnV8ixCeLv8X8Y8zymIItpqNJLXvrBuH6rSGdM9pEmPn23hZPLc7JWZ0VQYsFYpGWG00dzy5PWbR";
 
+  const { items } = useContext(CartContext);
+
   const onToken = (token) => {
+    items.map(async (item) => {
+      const date = new Date().toLocaleDateString();
+      const { name, imageurl, quantity } = item;
+      const userId = auth.currentUser.uid;
+      const data = {
+        name,
+        imageurl,
+        quantity,
+        date,
+        userId,
+        username: `${firstname} ${lastname}`,
+        address,
+        city,
+        country,
+        phonenumber,
+        total,
+      };
+
+      const colRef = collection(db, "orders");
+      const docRef = await addDoc(colRef, data);
+      console.log(docRef.id);
+    });
+
     handleNext();
   };
 

@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 
 export const auth = getAuth(app);
@@ -14,4 +14,10 @@ export const RequireAuth = ({ children }) => {
   }
   console.log(auth.currentUser);
   return children;
+};
+
+export const onLogout = () => {
+  signOut(auth).then(() => {
+    console.log("logged out");
+  });
 };

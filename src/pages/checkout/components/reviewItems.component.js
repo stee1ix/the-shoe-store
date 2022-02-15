@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Item = ({ name, imageurl, size, price, quantity, color, id }) => {
   const { items, setItems } = useContext(CartContext);
+
   return (
     <Box sx={{ marginBottom: 4 }}>
       <Box

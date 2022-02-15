@@ -23,6 +23,8 @@ import { CategoryContext } from "../../services/category/category.context";
 import { CartContext } from "../../services/cart/cart.context";
 
 import CartComponent from "./components/cart.component";
+import UsermenuComponent from "./components/usermenu.component";
+import { auth } from "../../services/authentication/authentication.services";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -89,9 +91,13 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const [anchorEl, setAnchorEl] = useState(null);
-
   const handleCartIconClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const [anchorUserEl, setUserAnchorEl] = useState(null);
+  const handleUserIconClick = (event) => {
+    setUserAnchorEl(event.currentTarget);
   };
 
   return (
@@ -181,10 +187,21 @@ const Navbar = () => {
             <IconButton
               color={"inherit"}
               size={"large"}
-              onClick={() => navigate("authentication")}
+              onClick={(event) => {
+                if (auth.currentUser) {
+                  handleUserIconClick(event);
+                } else {
+                  navigate("authentication");
+                }
+              }}
             >
               <AccountCircle />
             </IconButton>
+
+            <UsermenuComponent
+              anchorUserEl={anchorUserEl}
+              setUserAnchorEl={setUserAnchorEl}
+            />
           </Box>
         </Box>
       </Toolbar>
