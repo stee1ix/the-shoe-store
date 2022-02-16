@@ -21,10 +21,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import { CategoryContext } from "../../services/category/category.context";
 import { CartContext } from "../../services/cart/cart.context";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 import CartComponent from "./components/cart.component";
 import UsermenuComponent from "./components/usermenu.component";
-import { auth } from "../../services/authentication/authentication.services";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -71,6 +71,7 @@ const Navbar = () => {
 
   const { setCollectionName } = useContext(CategoryContext);
   const { items } = useContext(CartContext);
+  const { isLoggedIn } = useContext(AuthenticationContext);
 
   const [tabValue, setTabValue] = useState(0);
 
@@ -188,7 +189,7 @@ const Navbar = () => {
               color={"inherit"}
               size={"large"}
               onClick={(event) => {
-                if (auth.currentUser) {
+                if (isLoggedIn) {
                   handleUserIconClick(event);
                 } else {
                   navigate("authentication");

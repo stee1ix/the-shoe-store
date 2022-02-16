@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 
 import { fetchPastOrders } from "../../services/profile/profile.services";
-import { AccountCircle } from "@mui/icons-material";
 import { auth } from "../../services/authentication/authentication.services";
 import { updateProfile } from "firebase/auth";
 
@@ -92,8 +91,8 @@ const ProfilePage = () => {
             autoComplete="off"
           >
             <Typography
-              variant={"h3"}
-              fontWeight={"lighter"}
+              variant={"h4"}
+              fontWeight={"normal"}
               sx={{ marginBottom: 4 }}
             >
               Personal Details
@@ -151,9 +150,9 @@ const ProfilePage = () => {
           }}
         >
           <Typography
-            variant="h3"
+            variant="h4"
             sx={{ marginBottom: 4 }}
-            fontWeight={"lighter"}
+            fontWeight={"normal"}
           >
             Past Orders
           </Typography>

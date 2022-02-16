@@ -21,7 +21,7 @@ const OrderItem = ({
   total,
 }) => {
   return (
-    <Accordion sx={{ marginBottom: 3 }}>
+    <Accordion  sx={{ marginBottom: 3 }}>
       <AccordionSummary sx={{ width: "100%", display: "flex" }}>
         <img
           src={imageurl}
@@ -35,10 +35,14 @@ const OrderItem = ({
             {name}
           </Typography>
           <Typography
-            variant={"subtitle1"}
+            variant={"subtitle2"}
+            fontWeight={"normal"}
             sx={{ marginTop: "auto" }}
           >{`Quantity: ${quantity}`}</Typography>
-          <Typography variant={"subtitle1"}>{`Order Date: ${date}`}</Typography>
+          <Typography
+            variant={"subtitle2"}
+            fontWeight={"normal"}
+          >{`Order Date: ${date}`}</Typography>
         </Box>
         <Box
           sx={{
@@ -48,7 +52,7 @@ const OrderItem = ({
             alignItems: "flex-end",
           }}
         >
-          <Typography variant={"h6"} fontWeight={"normal"}>
+          <Typography variant={"subtitle1"} fontWeight={"normal"}>
             {`Total Price: ₹${total}`}
           </Typography>
           <Typography
@@ -62,23 +66,32 @@ const OrderItem = ({
       </AccordionSummary>
       <Divider variant={"middle"} flexItem />
       <AccordionDetails sx={{ marginTop: 1 }}>
-        <Typography variant={"h5"} fontWeight={"normal"}>
+        <Typography variant={"h6"} color={"dimgrey"} fontWeight={"normal"}>
           Delivery Details
         </Typography>
         <Box sx={{ display: "flex", marginTop: 2 }}>
           <Box>
-            <Typography variant={"subtitle1"}>{`Name: ${username}`}</Typography>
             <Typography
-              variant={"subtitle1"}
-            >{`Phone Number: ${phonenumber}`}</Typography>
+              variant={"subtitle2"}
+              fontWeight={"normal"}
+            >{`Name: ${username}`}</Typography>
             <Typography
-              variant={"subtitle1"}
+              variant={"subtitle2"}
+              fontWeight={"normal"}
+            >{`Phone: ${phonenumber}`}</Typography>
+            <Typography
+              variant={"subtitle2"}
+              fontWeight={"normal"}
             >{`Address: ${address}`}</Typography>
           </Box>
           <Box sx={{ marginLeft: 16 }}>
-            <Typography variant={"subtitle1"}>{`City: ${city}`}</Typography>
             <Typography
-              variant={"subtitle1"}
+              variant={"subtitle2"}
+              fontWeight={"normal"}
+            >{`City: ${city}`}</Typography>
+            <Typography
+              variant={"subtitle2"}
+              fontWeight={"normal"}
             >{`Country: ${country}`}</Typography>
           </Box>
         </Box>
