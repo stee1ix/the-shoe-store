@@ -12,7 +12,7 @@ const ConfirmComponent = ({ handleNext }) => {
       }}
     >
       <img
-        src={"https://img.icons8.com/fluency/400/000000/checkmark.png"}
+        src={"https://c.tenor.com/1YWH1QI9pVcAAAAi/utya-kaczka.gif"}
         style={{ width: 300, height: 300 }}
         alt="Order Confirmed"
       />

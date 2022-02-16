@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../../services/authentication/authentication.services";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -22,13 +22,17 @@ const SignupComponent = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const signUp = (email, password) => {
+  const signUp = (name, email, password) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential.user);
-        setIsLoading(false);
-        navigate(from, { replace: true });
+      .then((userCredential) => userCredential.user)
+      .then((user) => {
+        updateProfile(user, {
+          displayName: name,
+        }).then(() => {
+          setIsLoading(false);
+          navigate(from, { replace: true });
+        });
       })
       .catch((err) => {
         setIsLoading(false);
@@ -60,7 +64,7 @@ const SignupComponent = () => {
 
       <Typography>{error}</Typography>
 
-      <Button onClick={() => signUp(email, password)}>Sign Up</Button>
+      <Button onClick={() => signUp(name, email, password)}>Sign Up</Button>
 
       {isLoading && <CircularProgress />}
     </Box>
