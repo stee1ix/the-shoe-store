@@ -15,8 +15,6 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../../services/cart/cart.context";
 import { removeFromCart } from "../../../services/cart/cart.services";
 
-import EmptyCart from "../../../assets/empty_cart.svg";
-
 const CartItem = ({ name, imageurl, size, price, quantity, id }) => {
   const { items, setItems } = useContext(CartContext);
   return (
@@ -167,9 +165,9 @@ const CartComponent = ({ anchorEl, setAnchorEl }) => {
       ) : (
         <Box sx={{ padding: 6, textAlign: "center" }}>
           <img
-            src={EmptyCart}
+            src={"https://c.tenor.com/qtpyPjjD15QAAAAi/cxyduck.gif"}
             alt="empty cart"
-            style={{ width: 120, height: 120, marginBottom: "32px" }}
+            style={{ width: 150, height: 150, marginBottom: "32px" }}
           />
           <Typography variant={"h6"} gutterBottom>
             Your cart is empty

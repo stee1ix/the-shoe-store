@@ -40,10 +40,10 @@ const AlertdialogComponent = ({ open, setOpen }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button variant={"contained"} onClick={handleClose}>
+        <Button color={"inherit"} onClick={handleClose}>
           No
         </Button>
-        <Button variant={"outlined"} onClick={onConfirm}>
+        <Button color={"error"} onClick={onConfirm}>
           Yes
         </Button>
       </DialogActions>

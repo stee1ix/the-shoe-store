@@ -82,10 +82,9 @@ const ProfilePage = () => {
             alignItems: "center",
           }}
         >
-          <AccountCircle
-            sx={{ width: 250, height: 250 }}
-            fontSize={"large"}
-            color={"disabled"}
+          <img
+            src={"https://c.tenor.com/rs3suVPVRKgAAAAi/cxyduck.gif"}
+            style={{ width: 250, height: 250 }}
           />
           <Box
             sx={{ display: "flex", flexDirection: "column" }}
