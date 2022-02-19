@@ -54,8 +54,6 @@ const CollectionPage = () => {
     setFilterSort,
   } = useContext(FilterContext);
 
-  console.log(filteredCollection);
-
   const handleSortListItemClick = (event, index) => {
     setFilterSort(index);
   };

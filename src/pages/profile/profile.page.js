@@ -29,11 +29,9 @@ const ProfilePage = () => {
 
     updateProfile(auth.currentUser, { displayName: name })
       .then(() => {
-        console.log("Name updated");
         setNameUpdateStatus("Name updated successfully!");
       })
       .catch((err) => {
-        console.log(err);
         setNameUpdateStatus("Error in updating name!");
       });
   };
@@ -55,7 +53,6 @@ const ProfilePage = () => {
         setIsLoading(false);
         setPastOrders(r);
       })
-      .then(() => console.log(pastOrders))
       .catch((err) => {
         setError(err);
       });

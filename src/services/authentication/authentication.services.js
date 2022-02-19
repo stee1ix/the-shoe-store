@@ -21,7 +21,5 @@ export const RequireAuth = ({ children }) => {
 };
 
 export const onLogout = () => {
-  signOut(auth).then(() => {
-    console.log("logged out");
-  });
+  signOut(auth).then(() => {});
 };

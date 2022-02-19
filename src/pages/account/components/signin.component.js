@@ -29,7 +29,6 @@ const SigninComponent = () => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user);
         setIsLoading(false);
         navigate(from, { replace: true });
       })
@@ -71,7 +70,11 @@ const SigninComponent = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        {error && <Alert severity="error">{error}</Alert>}
+        {error && (
+          <Alert variant={"filled"} severity="error">
+            {error}
+          </Alert>
+        )}
 
         <Button
           type={"submit"}

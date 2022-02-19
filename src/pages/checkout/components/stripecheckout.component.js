@@ -46,7 +46,6 @@ const StripecheckoutComponent = ({
 
       const colRef = collection(db, "orders");
       const docRef = await addDoc(colRef, data);
-      console.log(docRef.id);
     });
 
     handleNext();

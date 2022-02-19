@@ -23,12 +23,9 @@ const AlertdialogComponent = ({ open, setOpen }) => {
   const onConfirm = () => {
     deleteUser(auth.currentUser)
       .then(() => {
-        console.log("user deleted");
         navigate("/");
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
   return (
