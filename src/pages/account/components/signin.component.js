@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Alert,
   Box,
   Button,
   CircularProgress,
@@ -22,7 +23,9 @@ const SigninComponent = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const signIn = (email, password) => {
+  const signIn = (event, email, password) => {
+    event.preventDefault();
+
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -37,23 +40,47 @@ const SigninComponent = () => {
   };
 
   return (
-    <Box>
-      <Typography>SignIn</Typography>
+    <Box sx={{ width: 400, marginRight: 16 }}>
+      <Typography variant={"h4"} fontWeight={"normal"}>
+        Already have an account
+      </Typography>
+      <Typography variant={"subtitle1"} color={"dimgrey"} sx={{ marginTop: 1 }}>
+        Login with your email and password
+      </Typography>
 
-      <TextField
-        variant="outlined"
-        label={"email"}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <TextField
-        variant="outlined"
-        label={"password"}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <Box
+        component={"form"}
+        onSubmit={(event) => signIn(event, email, password)}
+        sx={{ display: "flex", flexDirection: "column", marginBlock: 6 }}
+      >
+        <TextField
+          required
+          type={"email"}
+          variant="outlined"
+          label={"Email"}
+          placeholder={"abc@xyz.com"}
+          sx={{ marginBottom: 4 }}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          required
+          variant="outlined"
+          label={"Password"}
+          sx={{ marginBottom: 2 }}
+          type={"password"}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <Typography>{error}</Typography>
+        {error && <Alert severity="error">{error}</Alert>}
 
-      <Button onClick={() => signIn(email, password)}>Sign In</Button>
+        <Button
+          type={"submit"}
+          variant={"contained"}
+          sx={{ alignSelf: "flex-start", marginTop: 4 }}
+        >
+          Login
+        </Button>
+      </Box>
 
       {isLoading && <CircularProgress />}
     </Box>

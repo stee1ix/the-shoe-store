@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Alert,
   Box,
   Button,
   CircularProgress,
@@ -22,7 +23,9 @@ const SignupComponent = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const signUp = (name, email, password) => {
+  const signUp = (event, name, email, password) => {
+    event.preventDefault();
+
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => userCredential.user)
@@ -41,31 +44,59 @@ const SignupComponent = () => {
   };
 
   return (
-    <Box>
-      <Typography>SignUp</Typography>
-      <TextField
-        variant="outlined"
-        label={"name"}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <TextField
-        variant="outlined"
-        label={"email"}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <TextField
-        variant="outlined"
-        label={"password"}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+    <Box sx={{ width: 400 }}>
+      <Typography variant={"h4"} fontWeight={"normal"}>
+        Don't have an account
+      </Typography>
+      <Typography variant={"subtitle1"} color={"dimgrey"} sx={{ marginTop: 1 }}>
+        Sign up with your details
+      </Typography>
 
-      <Typography>{error}</Typography>
+      <Box
+        component={"form"}
+        onSubmit={(event) => signUp(event, name, email, password)}
+        sx={{ display: "flex", flexDirection: "column", marginBlock: 6 }}
+      >
+        <TextField
+          required
+          variant="outlined"
+          label={"Name"}
+          value={name}
+          type={"text"}
+          placeholder={"Cristiano Ronaldo"}
+          sx={{ marginBottom: 4 }}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <TextField
+          variant="outlined"
+          label={"Email"}
+          placeholder={"abc@xyz.com"}
+          value={email}
+          type={"email"}
+          required
+          sx={{ marginBottom: 4 }}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          variant="outlined"
+          label={"Password"}
+          value={password}
+          sx={{ marginBottom: 2 }}
+          type={"password"}
+          required
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <Button onClick={() => signUp(name, email, password)}>Sign Up</Button>
+        {error && <Alert severity="error">{error}</Alert>}
 
+        <Button
+          type={"submit"}
+          variant={"contained"}
+          sx={{ alignSelf: "flex-start", marginTop: 4 }}
+        >
+          Sign Up
+        </Button>
+      </Box>
       {isLoading && <CircularProgress />}
     </Box>
   );

@@ -6,9 +6,17 @@ import SignupComponent from "./components/signup.component";
 
 const AuthenticationPage = () => {
   return (
-    <Box>
-      <SigninComponent />
-      <SignupComponent />
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          width: "fit-content",
+          marginTop: 12,
+        }}
+      >
+        <SigninComponent />
+        <SignupComponent />
+      </Box>
     </Box>
   );
 };
