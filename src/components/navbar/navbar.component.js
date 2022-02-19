@@ -3,19 +3,15 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  InputBase,
   Box,
   IconButton,
   Badge,
   Tabs,
   Tab,
 } from "@mui/material";
-import {
-  Search as SearchIcon,
-  ShoppingCart,
-  AccountCircle,
-} from "@mui/icons-material";
-import { styled, alpha } from "@mui/material/styles";
+import { ShoppingCart, AccountCircle } from "@mui/icons-material";
+// import { Search as SearchIcon } from "@mui/icons-material";
+// import { styled, alpha } from "@mui/material/styles";
 
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -26,44 +22,44 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import CartComponent from "./components/cart.component";
 import UsermenuComponent from "./components/usermenu.component";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.black, 0.05),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.black, 0.15),
-  },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
+// const Search = styled("div")(({ theme }) => ({
+//   position: "relative",
+//   borderRadius: theme.shape.borderRadius,
+//   backgroundColor: alpha(theme.palette.common.black, 0.05),
+//   "&:hover": {
+//     backgroundColor: alpha(theme.palette.common.black, 0.15),
+//   },
+//   marginLeft: 0,
+//   width: "100%",
+//   [theme.breakpoints.up("sm")]: {
+//     marginLeft: theme.spacing(1),
+//     width: "auto",
+//   },
+// }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "20ch",
-    },
-  },
-}));
+// const SearchIconWrapper = styled("div")(({ theme }) => ({
+//   padding: theme.spacing(0, 2),
+//   height: "100%",
+//   position: "absolute",
+//   pointerEvents: "none",
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "center",
+// }));
+//
+// const StyledInputBase = styled(InputBase)(({ theme }) => ({
+//   color: "inherit",
+//   "& .MuiInputBase-input": {
+//     padding: theme.spacing(1, 1, 1, 0),
+//     // vertical padding + font size from searchIcon
+//     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+//     transition: theme.transitions.create("width"),
+//     width: "100%",
+//     [theme.breakpoints.up("sm")]: {
+//       width: "20ch",
+//     },
+//   },
+// }));
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -80,12 +76,8 @@ const Navbar = () => {
       setTabValue(1);
       setCollectionName("mens");
     } else if (location.pathname.includes("/collection/womens")) {
-      console.log(location.pathname.includes("/collection/womens"));
       setTabValue(2);
       setCollectionName("womens");
-    } else if (location.pathname.includes("/collection/kids")) {
-      setTabValue(3);
-      setCollectionName("kids");
     } else {
       setTabValue(0);
     }
@@ -140,12 +132,11 @@ const Navbar = () => {
             indicatorColor={"primary"}
           >
             <Tab label={"HOME"} onClick={() => navigate("/")} />
-            <Tab label={"MEN"} onClick={() => navigate("collection/mens")} />
+            <Tab label={"MENS"} onClick={() => navigate("collection/mens")} />
             <Tab
-              label={"WOMEN"}
+              label={"WOMENS"}
               onClick={() => navigate("collection/womens")}
             />
-            <Tab label={"KIDS"} onClick={() => navigate("collection/kids")} />
           </Tabs>
         </Box>
         <Box
@@ -156,15 +147,15 @@ const Navbar = () => {
             alignItems: "center",
           }}
         >
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          {/*<Search>*/}
+          {/*  <SearchIconWrapper>*/}
+          {/*    <SearchIcon />*/}
+          {/*  </SearchIconWrapper>*/}
+          {/*  <StyledInputBase*/}
+          {/*    placeholder="Search…"*/}
+          {/*    inputProps={{ "aria-label": "search" }}*/}
+          {/*  />*/}
+          {/*</Search>*/}
           <Box
             sx={{
               display: "flex",

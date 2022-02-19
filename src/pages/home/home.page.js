@@ -172,14 +172,14 @@ const HomePage = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          paddingBlock: 16,
+          paddingBlock: 12,
         }}
       >
         <Box
           sx={{
             width: "60%",
             paddingInline: 16,
-            paddingBlock: 4,
+            paddingBlock: 6,
             backgroundColor: "#e5fae5",
             textAlign: "center",
             display: "flex",
@@ -207,7 +207,7 @@ const HomePage = () => {
           </Button>
         </Box>
       </Box>
-      <Box component={"footer"}>
+      <Box component={"footer"} sx={{ marginTop: 12 }}>
         <Box
           sx={{
             display: "flex",
