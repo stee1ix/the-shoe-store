@@ -44,7 +44,7 @@ const SignupComponent = () => {
   };
 
   return (
-    <Box sx={{ width: 400 }}>
+    <Box sx={{ width: 400, marginLeft: 16 }}>
       <Typography variant={"h4"} fontWeight={"normal"}>
         Don't have an account
       </Typography>
@@ -83,6 +83,7 @@ const SignupComponent = () => {
           value={password}
           sx={{ marginBottom: 2 }}
           type={"password"}
+          helperText={"Minimum 6 characters"}
           required
           onChange={(e) => setPassword(e.target.value)}
         />

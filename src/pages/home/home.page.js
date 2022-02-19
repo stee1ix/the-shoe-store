@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ProductcardComponent from "./components/productcard.component";
-import { GitHub, SportsBasketball } from "@mui/icons-material";
+import { GitHub, SportsBasketball, Twitter } from "@mui/icons-material";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -237,6 +237,13 @@ const HomePage = () => {
               target={"_blank"}
             >
               <SportsBasketball color={"success"} fontSize={"large"} />
+            </IconButton>
+            <IconButton
+              component={"a"}
+              href={"https://twitter.com/imriturajranjan"}
+              target={"_blank"}
+            >
+              <Twitter color={"success"} fontSize={"large"} />
             </IconButton>
           </Box>
         </Box>

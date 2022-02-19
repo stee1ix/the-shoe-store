@@ -165,7 +165,7 @@ const CartComponent = ({ anchorEl, setAnchorEl }) => {
       ) : (
         <Box sx={{ padding: 6, textAlign: "center" }}>
           <img
-            src={"https://c.tenor.com/qtpyPjjD15QAAAAi/cxyduck.gif"}
+            src={"https://c.tenor.com/Ge1T5k9YSIwAAAAM/cxyduck-cxydck.gif"}
             alt="empty cart"
             style={{ width: 150, height: 150, marginBottom: "32px" }}
           />

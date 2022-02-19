@@ -82,7 +82,7 @@ const ProfilePage = () => {
           }}
         >
           <img
-            src={"https://c.tenor.com/rs3suVPVRKgAAAAi/cxyduck.gif"}
+            src={"https://c.tenor.com/qtpyPjjD15QAAAAi/cxyduck.gif"}
             style={{ width: 250, height: 250 }}
           />
           <Box
@@ -198,7 +198,7 @@ const ProfilePage = () => {
                 <Box sx={{ alignSelf: "center", textAlign: "center" }}>
                   <img
                     src={
-                      "https://c.tenor.com/Ge1T5k9YSIwAAAAM/cxyduck-cxydck.gif"
+                      "https://img.icons8.com/ios-filled/512/000000/empty-box.png"
                     }
                     width={200}
                     height={200}
